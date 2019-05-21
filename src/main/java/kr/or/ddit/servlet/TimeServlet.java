@@ -8,7 +8,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+
 public class TimeServlet extends HttpServlet{
+	
+	private Logger logger = LoggerFactory.getLogger(TimeServlet.class);
+	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
@@ -19,7 +26,10 @@ public class TimeServlet extends HttpServlet{
 		String param = req.getParameter("i");
 		String param2 = req.getParameter("j");
 		
-		System.out.println("param : " + param);
+//		System.out.println("param : " + param);
+		
+		logger.debug("param : {} ", param);
+		logger.debug("param2 : {} ", param2);
 		
 		pw.write("<html>");
 		pw.write("	<head>");
