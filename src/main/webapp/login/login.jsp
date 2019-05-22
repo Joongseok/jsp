@@ -10,7 +10,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>Signin</title>
+<title>Login</title>
 
 <link href="<%=request.getContextPath() %>/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
@@ -22,9 +22,8 @@
 
 	<div class="container">
 
-		<form class="form-signin" 
-			  method="post" 
-			  action="<%=request.getContextPath() %>/login/loginProcess.jsp">
+		<form class="form-signin"
+			  method="post" action="<%=request.getContextPath() %>/login">
 			<h2 class="form-signin-heading">Login</h2>
 			<label for="userId" class="sr-only">userId</label> 
 			<input type="text" name="userId" id="userId" class="form-control" placeholder="userId" required autofocus>
