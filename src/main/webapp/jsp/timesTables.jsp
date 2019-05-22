@@ -11,14 +11,17 @@
 <title>times Tables</title>
 </head>
 <body>
-
+	<% 
+		String dan = request.getParameter("dan"); 
+		String gop = request.getParameter("gop");
+	%>
 	<table>
 	<%
-		for(int i = 1; i <= 9; i++){ // 첫번째 for문 시작
+		for(int i = 1; i <= Integer.parseInt(dan); i++){ // 첫번째 for문 시작
 	%>
 	<tr>
 	<% 
-			for(int j = 2; j <=9; j++){ // 두번쨰 for문 시작
+			for(int j = 2; j <=Integer.parseInt(gop); j++){ // 두번쨰 for문 시작
 	%>
 			<td> 
 			<%= j %> 
