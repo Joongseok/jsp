@@ -1,23 +1,41 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Login</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<title>Signin</title>
+
+<link href="<%=request.getContextPath() %>/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+<link href="<%=request.getContextPath() %>/css/signin.css" rel="stylesheet">
+
 </head>
+
 <body>
 
-	<!-- 어디로 요청을 보낼지 form태그 action속성 
-		어떻게 보낼지 (http method) ?? form태그 method 속성(get-default/ post)-->
-	<%-- /login/login.jsp -- /login/loginProcess.jsp --%>
-	<form action="<%= request.getContextPath() %>/login/loginProcess.jsp"
-		  method="post" >
-		userId : <input type="text" name="userId" value="sally"/><br> 
-		userId : <input type="text" name="userId" value="샐리"/><br>
-		password : <input type="password" name="password" value="pass1234"/><br>
-		<input type="submit" value="로그인"/>
-	</form>
+	<div class="container">
 
+		<form class="form-signin" 
+			  method="post" 
+			  action="<%=request.getContextPath() %>/login/loginProcess.jsp">
+			<h2 class="form-signin-heading">Login</h2>
+			<label for="userId" class="sr-only">userId</label> 
+			<input type="text" name="userId" id="userId" class="form-control" placeholder="userId" required autofocus>
+			 <label	for="password" class="sr-only">password</label> 
+			 <input	type="password" name="password" id="password" class="form-control" placeholder="password" required>
+			<div class="checkbox">
+				<label> <input type="checkbox" value="remember-me">	remember</label>
+			</div>
+			<button class="btn btn-lg btn-primary btn-block" type="submit">login </button>
+		</form>
+
+	</div>
 </body>
 </html>
