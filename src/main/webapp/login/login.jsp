@@ -26,9 +26,9 @@
 			  method="post" action="<%=request.getContextPath() %>/login">
 			<h2 class="form-signin-heading">Login</h2>
 			<label for="userId" class="sr-only">userId</label> 
-			<input type="text" name="userId" id="userId" class="form-control" placeholder="userId" required autofocus>
+			<input type="text" name="userId" id="userId" class="form-control" placeholder="userId" value="brown" required autofocus>
 			 <label	for="password" class="sr-only">password</label> 
-			 <input	type="password" name="password" id="password" class="form-control" placeholder="password" required>
+			 <input	type="password" name="password" id="password" class="form-control" value="brown1234" placeholder="password" required>
 			<div class="checkbox">
 				<label> <input type="checkbox" value="remember-me">	remember</label>
 			</div>

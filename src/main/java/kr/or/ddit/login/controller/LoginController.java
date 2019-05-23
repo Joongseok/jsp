@@ -8,6 +8,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import kr.or.ddit.user.model.UserVO;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -47,8 +50,18 @@ public class LoginController extends HttpServlet {
 		// 단순 login화면을 html로 응답을 생성해주는 작업이 필요
 		// /login/login.jsp 위임 --> 서버상에 별도의 상태변경을 가하는 요청이 아니기 떄문에
 		// 							 dispatch 방식으로 위임
-		request.getRequestDispatcher("/login/login.jsp").forward(request, response);
+
+		HttpSession session = request.getSession();
+		UserVO user = (UserVO)session.getAttribute("USER_INFO");
 		
+		logger.debug("user : {}", user);
+		if (user == null) {
+			// session에 사용자 정보가 없을 경우 --> 기존 로직
+			request.getRequestDispatcher("/login/login.jsp").forward(request, response);
+		}else{
+			// session에 사용자 정보가 있을경우 --> main화면으로 이동
+			request.getRequestDispatcher("/main.jsp").forward(request, response);
+		}
 	}
 
 	// 로그인 요청을 처리
@@ -67,6 +80,11 @@ public class LoginController extends HttpServlet {
 		
 		// 일치하면 (로그인 성공) : main 화면으로 이동
 		if (userId.equals("brown") && password.equals("brown1234")) {
+			
+			// session에 사용자 정보를 넣어준다(사용빈도가 높기때문에)
+			HttpSession session = request.getSession();
+			session.setAttribute("USER_INFO", new UserVO("브라운", "borwn", "곰"));
+			
 			RequestDispatcher rd = request.getRequestDispatcher("/main.jsp");
 			rd.forward(request, response);
 			
@@ -75,7 +93,6 @@ public class LoginController extends HttpServlet {
 			// 로그인화면으로 이동 : localhost/jsp/login
 			// 현상황에서 /jsp/login rul로 dispatch 방식으로 위임이 불가
 			// request.getMethod();  //GET, POST
-			
 			response.sendRedirect(request.getContextPath() + "/login");
 		}
 	}
