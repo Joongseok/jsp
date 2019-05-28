@@ -1,9 +1,11 @@
 package kr.or.ddit.user.dao;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 import java.util.List;
 
+import kr.or.ddit.paging.model.PageVO;
 import kr.or.ddit.user.model.UserVO;
 
 import org.junit.After;
@@ -16,6 +18,8 @@ import org.slf4j.LoggerFactory;
 
 public class UserDaoImplTest {
 
+	
+	private IUserDao userDao;
 	private static final Logger logger = LoggerFactory
 			.getLogger(UserDaoImplTest.class);
 	
@@ -37,6 +41,7 @@ public class UserDaoImplTest {
 	@Before
 	public void setup(){
 		logger.debug("setup");
+		userDao = new UserDaoImpl();
 	}
 	
 	@After
@@ -92,5 +97,44 @@ public class UserDaoImplTest {
 	// 몇번째 페이지 조회인지?, 페이징 몇건씩 데이터를 보여줄건지 : 쿼리 실행 파라미터
 	// 정렬 순서 ? : 로직 --> 파라미터화 시킬수 있다
 	// --> 사용자 아이디 순으로 정렬
+	/**
+	* Method : userPagingListTest
+	* 작성자 : PC25
+	* 변경이력 :
+	* Method 설명 : 사용자 페이징 리스트 조회 테스트
+	*/
+	@Test
+	public void userPagingListTest(){
+		/***Given***/
+		PageVO pageVo = new PageVO(1, 10);
+		
+		/***When***/
+		List<UserVO> userPagingList = userDao.userPagingList(pageVo);
+		
+		/***Then***/
+		assertNotNull(userPagingList);
+		assertEquals(10, userPagingList.size());
+		
+	}
 
+	
+	/**
+	* Method : usersCnt
+	* 작성자 : PC25
+	* 변경이력 :
+	* Method 설명 : 사용자 전체수 조회 테스트
+	*/
+	@Test
+	public void usersCnt(){
+		/***Given***/
+
+		/***When***/
+		int usersCnt = userDao.usersCnt();
+
+		/***Then***/
+		assertEquals(105, usersCnt);
+		logger.debug("usersCnt : {}", usersCnt);
+
+	}
+	
 }

@@ -1,7 +1,10 @@
 package kr.or.ddit.user.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import kr.or.ddit.paging.model.PageVO;
 import kr.or.ddit.user.dao.IUserDao;
 import kr.or.ddit.user.dao.UserDaoImpl;
 import kr.or.ddit.user.model.UserVO;
@@ -39,7 +42,35 @@ public class UserService implements IuserService {
 		UserVO userVo = dao.getUser(userId);
 		return userVo;
 	}
-	
-	
+
+	/**
+	* Method : userPagingList
+	* 작성자 : PC25
+	* 변경이력 :
+	* @param pageVo
+	* @return
+	* Method 설명 : 사용자 페이징 리스트 조회
+	*/
+	@Override
+	public Map<String, Object> userPagingList(PageVO pageVo) {
+		IUserDao dao = new UserDaoImpl();
+		List<UserVO> userList = dao.userPagingList(pageVo); //10
+		int usersCnt = dao.usersCnt(); //105
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		
+		resultMap.put("userList", userList); // 10
+		resultMap.put("usersCnt", usersCnt); // 105
+		
+		int paginationSize = (int) Math.ceil((double)usersCnt/pageVo.getPageSize()); // 105/10
+		resultMap.put("paginationSize", paginationSize);
+		
+		return resultMap;
+	}
+
+	@Override
+	public int usersCnt() {
+		IUserDao dao = new UserDaoImpl();
+		return dao.usersCnt();
+	}
 
 }

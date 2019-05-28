@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import kr.or.ddit.paging.model.PageVO;
 import kr.or.ddit.user.model.UserVO;
 import kr.or.ddit.user.service.IuserService;
 import kr.or.ddit.user.service.UserService;
@@ -29,7 +30,7 @@ public class UserController extends HttpServlet {
 		
 		//userList객체를 userList.jsp에서 참고할수 있도록 request객체에 속성으로 넣어준다.
 		request.setAttribute("userList", userService.userList());
-		
+
 		//userList객체를 이용하여 사용자 화면을 생성하는 jsp
 		request.getRequestDispatcher("/user/userList.jsp").forward(request, response);
 		

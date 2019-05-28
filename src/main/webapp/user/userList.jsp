@@ -65,6 +65,11 @@
 								<li><a href="#">3</a></li>
 								<li><a href="#">4</a></li>
 								<li><a href="#">5</a></li>
+<%-- 							<% --%>
+ 								<!-- int totalPage = (int)request.getAttribute("totalPage"); -->
+<%-- 								for(int i = 1; i <= totalPage; i++) {%> --%>
+<%-- 									<li><a href="#"><%= i %></a></li> --%>
+<%-- 									<%} %> --%>
 							</ul>
 						</div>
 					</div>
