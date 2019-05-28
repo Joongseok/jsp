@@ -15,7 +15,7 @@
 
 <link href="<%=request.getContextPath() %>/css/signin.css" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-
+<script src="<%=request.getContextPath()%>/js/js.cookie.js"></script>
 
 	<script>
 	
@@ -25,29 +25,26 @@
 			// 1. rememberme cookie가 있는지  있으면 값이 true인지
 			// 1-1. rememberme가 true이면 input id="rememberme" 체크박스를 체크
 			
-			var rememberme = getCookie("rememberme");
+			var rememberme = Cookies.get("rememberme");
 			if(rememberme == "true"){
 				$("#rememberme").prop("checked", true);
-				$("#userId").val(getCookie("userId"));
+				$("#userId").val(Cookies.get("userId"));
 				$("#password").focus();
 			}
-			
-			
-			
 			
 			// login button 클릭시 실행되는 핸들러
 			$("#loginBtn").on("click", function() {
 				// 만약에 rememberme 체크박스가 체크되어있는 경우
 				if($("#rememberme").is(":checked")){
 					// 사용자 아이디 값을 userId 쿠키로 저장
-					setCookie("userId", $("#userId").val(), 30);
+					Cookies.set("userId", $("#userId").val(), {expires : 30});
 					// true값을 rememberme cookie값으로 저장
-					setCookie("rememberme", "true", 30);
+					Cookies.set("rememberme", "true", {expires : 30});
 				} else{
 					// 만약에 rememberme 체크박스가 해제 되어있는 경우
-					deleteCookie("userId");
+					Cookies.remove("userId");
 					// userid, rememberme cookie값을 삭제
-					deleteCookie("rememberme");
+					Cookies.remove("rememberme");
 				}
 				
 				//로그인 요청을 서버로 전송
