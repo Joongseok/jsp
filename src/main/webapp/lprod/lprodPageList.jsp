@@ -72,7 +72,7 @@
 									<%if(pageVo.getPage() == 1) {%>
 									<li class="disabled"><span>«</span></li>
 									<%} else{%>
-									<li><a href="<%=request.getContextPath()%>/lprodPagingList?page=<%=pageVo.getPage()-1%>&pageSize=<%=pageVo.getPageSize()%>">«</a></li>
+									<li><a href="${pageContext.request.contextPath}/lprodPagingList?page=<%=pageVo.getPage()-1%>&pageSize=<%=pageVo.getPageSize()%>">«</a></li>
 									<% }%>
 									<%for (int i = 1; i <= paginationSize; i++) {	%>
 									<li 
@@ -81,7 +81,7 @@
 									<% }%>
 									>
 									<%if(i!=pageVo.getPage()){ %>
-										<a href="<%=request.getContextPath()%>/lprodPagingList?page=<%=i%>&pageSize=<%=pageVo.getPageSize()%>"><%=i%></a>
+										<a href="${pageContext.request.contextPath}/lprodPagingList?page=<%=i%>&pageSize=<%=pageVo.getPageSize()%>"><%=i%></a>
 									<%} else{%>
 										<span><%=i %></span>
 									<%}%>
@@ -92,7 +92,7 @@
 								<%if (pageVo.getPage() == paginationSize) {%>
 								<li class="disabled"><span>»</span></li>
 								<%} else{ %>
-								<li><a href="<%=request.getContextPath()%>/lprodPagingList?page=<%=pageVo.getPage() + 1%>&pageSize=<%=pageVo.getPageSize()%>">»</a></li>
+								<li><a href="${pageContext.request.contextPath}/lprodPagingList?page=<%=pageVo.getPage() + 1%>&pageSize=<%=pageVo.getPageSize()%>">»</a></li>
 								<% }%>
 							</ul>
 						</div>

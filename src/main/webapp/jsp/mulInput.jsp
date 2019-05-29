@@ -7,7 +7,7 @@
 <title>mulInput</title>
 </head>
 <body>
-	<form action="<%=request.getContextPath()%>/jsp/mulCalculation" method="post">
+	<form action="${pageContext.request.contextPath}/jsp/mulCalculation" method="post">
 		<input type="text" name="param1"value="3">
 		<input type="text" name="param2"value="6">
 		<input type="submit"value="전송">

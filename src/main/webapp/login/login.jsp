@@ -11,11 +11,11 @@
 
 <title>Login</title>
 
-<link href="<%=request.getContextPath() %>/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-<link href="<%=request.getContextPath() %>/css/signin.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/signin.css" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="<%=request.getContextPath()%>/js/js.cookie.js"></script>
+<script src="${pageContext.request.contextPath}/js/js.cookie.js"></script>
 
 	<script>
 	
@@ -101,10 +101,10 @@
 	<div class="container">
 
 		<form id="frm" class="form-signin"
-			  method="post" action="<%=request.getContextPath() %>/login">
+			  method="post" action="${pageContext.request.contextPath }/login">
 			<h2 class="form-signin-heading">Login</h2>
 			<label for="userId" class="sr-only">userId</label> 
-			<input type="text" name="userId" id="userId" class="form-control" placeholder="userId" required>
+			<input type="text" name="userId" id="userId" class="form-control" placeholder="userId" required value="${param.userId}">
 			 <label	for="password" class="sr-only">password</label> 
 			 <input	type="password" name="password" id="password" class="form-control" value="brown1234" placeholder="password" required>
 			<div class="checkbox">

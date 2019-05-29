@@ -3,7 +3,7 @@
 <%@page import="kr.or.ddit.user.model.UserVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -44,20 +44,15 @@
 									<th>사용자 별명</th>
 									<th>등록일시</th>
 								</tr>
-
-								<%
-									List<UserVO> userPagingList = (List<UserVO>) request.getAttribute("userList");
-									for (UserVO user : userPagingList) {
-								%>
-								<tr>
-									<td><%=user.getUserId()%></td>
-									<td><%=user.getName()%></td>
-									<td><%=user.getAlias()%></td>
-									<td></td>
-								</tr>
-								<%
-									}
-								%>
+								
+								<c:forEach items="${userList}" var="user">
+									<tr>
+										<td>${user.userId}</td>
+										<td>${user.name}</td>
+										<td>${user.alias}</td>
+										<td></td>
+									</tr>
+								</c:forEach>
 							</table>
 						</div>
 
@@ -71,7 +66,7 @@
 									<%if(pageVo.getPage() == 1) {%>
 									<li class="disabled"><span>«</span></li>
 									<%} else{%>
-									<li><a href="<%=request.getContextPath()%>/userPagingList?page=<%=pageVo.getPage() -1%>&pageSize=<%=pageVo.getPageSize()%>">«</a></li>
+									<li><a href="${pageContext.request.contextPath}/userPagingList?page=<%=pageVo.getPage() -1%>&pageSize=<%=pageVo.getPageSize()%>">«</a></li>
 									<% }%>
 									<%for (int i = 1; i <= paginationSize; i++) {	%>
 									<li 
@@ -80,7 +75,7 @@
 									<% }%>
 									>
 									<%if(i!=pageVo.getPage()){ %>
-										<a href="<%=request.getContextPath()%>/userPagingList?page=<%=i%>&pageSize=<%=pageVo.getPageSize()%>"><%=i%></a>
+										<a href="${pageContext.request.contextPath}/userPagingList?page=<%=i%>&pageSize=<%=pageVo.getPageSize()%>"><%=i%></a>
 									<%} else{%>
 										<span><%=i %></span>
 									<%}%>
@@ -91,7 +86,7 @@
 								<%if (pageVo.getPage() == paginationSize) {%>
 								<li class="disabled"><span>»</span></li>
 								<%} else{ %>
-								<li><a href="<%=request.getContextPath()%>/userPagingList?page=<%=pageVo.getPage() + 1%>&pageSize=<%=pageVo.getPageSize()%>">»</a></li>
+								<li><a href="${pageContext.request.contextPath}/userPagingList?page=<%=pageVo.getPage() + 1%>&pageSize=<%=pageVo.getPageSize()%>">»</a></li>
 								<% }%>
 							</ul>
 						</div>
