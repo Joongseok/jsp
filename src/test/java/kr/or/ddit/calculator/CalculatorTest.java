@@ -1,11 +1,10 @@
 package kr.or.ddit.calculator;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.junit.Before;
 import org.junit.Test;
 //문자열 계산기
 //String text ="1,5,10,20"; 

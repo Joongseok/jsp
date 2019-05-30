@@ -5,6 +5,36 @@
 <mapper namespace="user">
 
 
+	<insert id="insertUser" parameterType="userVo">
+		INSERT INTO USERS 
+		(
+			 USERID
+			,NAME
+			,ALIAS
+			,PASS
+			,ADDR1
+			,ADDR2
+			,ZIPCD
+			,BIRTH
+			,PATH
+			,FILENAME
+		)
+		VALUES
+		(
+			 #{userId}
+			,#{name}
+			,#{alias}
+			,#{pass}
+			,#{addr1}
+			,#{addr2}
+			,#{zipcd}
+			,#{birth}
+			,#{path}
+			,#{filename}
+		)
+	</insert>
+
+
 	<!-- 전체 사용자 리스트 조회 -->
 	<select id="userList" resultType="userVo">
 		SELECT *

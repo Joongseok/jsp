@@ -1,45 +1,16 @@
 package kr.or.ddit.user.dao;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-
 import java.util.List;
-
-import org.apache.ibatis.session.SqlSession;
-import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import kr.or.ddit.mybatis.MyBatisUtil;
 import kr.or.ddit.paging.model.PageVO;
 import kr.or.ddit.user.model.UserVO;
 
+import org.apache.ibatis.session.SqlSession;
+
+
 public class UserDaoImpl implements IUserDao {
 
-	private static final Logger logger = LoggerFactory
-			.getLogger(UserDaoImpl.class);
-	
-	public static void main(String[] args) {
-		/***Given***/
-		IUserDao userDao = new UserDaoImpl();
-
-		/***When***/
-		List<UserVO> userList = userDao.userList();
-		
-		/***Then***/
-		logger.debug("userList : {}", userList);
-
-		
-		/***Given***/
-		String userId = "brown";
-
-		/***When***/
-		UserVO user = userDao.getUser(userId);
-
-		/***Then***/
-		logger.debug("user : {}", user);
-		
-	}
 
 	/**
 	* Method : userList

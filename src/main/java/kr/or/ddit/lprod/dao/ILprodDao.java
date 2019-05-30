@@ -24,7 +24,15 @@ public interface ILprodDao {
 	* Method 설명 : lprod 페이징 조회
 	*/
 	List<LprodVO> lprodPagingList(PageVO pageVo);
-	
+	/**
+	* Method : getLprod
+	* 작성자 : PC25
+	* 변경이력 :
+	* @param lprod_id
+	* @return
+	* Method 설명 : lprod 선택 조회
+	*/
+	LprodVO getLprod(String lprod_id);
 	/**
 	* Method : lprodCnt
 	* 작성자 : PC25

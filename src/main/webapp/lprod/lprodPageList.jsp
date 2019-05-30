@@ -17,9 +17,25 @@
 <link rel="icon" href="../../favicon.ico">
 
 <title>lprodList</title>
-
+<style>
+	.lprodTr:hover{
+		cursor: pointer;
+	}
+</style>
 <!-- css, js -->
 <%@include file="/common/basicLib.jsp"%>
+
+<script>
+	$(document).ready(function() {
+		$(".lprodTr").on('click', function(){
+			var lprodId = $(this).data("lprodid");
+			$("#lprodid").val(lprodId);
+			$("#frm").submit();
+			
+		});
+	});
+
+</script>
 
 </head>
 
@@ -36,7 +52,12 @@
 			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 				<div class="row">
 					<div class="col-sm-8 blog-main">
-						<h2 class="sub-header">사용자</h2>
+						<h2 class="sub-header">lprod</h2>
+						
+						<form id="frm" action="${pageContext.request.contextPath}/lprod" method="get">
+							<input type="hidden" id="lprodid" name="lprod_id">
+						</form>
+						
 						<div class="table-responsive">
 							<table class="table table-striped">
 								<tr>
@@ -47,7 +68,7 @@
 								</tr>
 
 								<c:forEach items="${lprodList }" var="lprod">
-									<tr>
+									<tr class="lprodTr" data-lprodid="${lprod.lprod_id}">
 										<td>${lprod.lprod_id }</td>
 										<td>${lprod.lprod_nm }</td>
 										<td>${lprod.lprod_gu }</td>

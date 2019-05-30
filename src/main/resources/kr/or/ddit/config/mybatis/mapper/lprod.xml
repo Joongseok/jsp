@@ -27,4 +27,9 @@
 		SELECT COUNT(*)
 		FROM LPROD
 	</select>
+	<select id="getLprod" parameterType="string" resultType="lprodVo">
+		SELECT *
+		FROM LPROD
+		WHERE LPROD_ID = #{lprod_id}
+	</select>
 </mapper>

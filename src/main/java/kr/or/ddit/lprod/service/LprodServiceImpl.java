@@ -42,4 +42,9 @@ public class LprodServiceImpl implements ILprodService {
 		return lprodDao.lprodCnt();
 	}
 
+	@Override
+	public LprodVO getLprod(String lprod_id) {
+		return lprodDao.getLprod(lprod_id);
+	}
+
 }

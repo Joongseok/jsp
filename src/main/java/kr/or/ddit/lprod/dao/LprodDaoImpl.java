@@ -16,6 +16,7 @@ public class LprodDaoImpl implements ILprodDao {
 	public List<LprodVO> lprodList() {
 		SqlSession sqlSession = MyBatisUtil.getSqlSession();
 		List<LprodVO> lprodList = sqlSession.selectList("lprod.lprodList");
+		sqlSession.close();
 		return lprodList;
 	}
 
@@ -23,6 +24,7 @@ public class LprodDaoImpl implements ILprodDao {
 	public List<LprodVO> lprodPagingList(PageVO pageVo) {
 		SqlSession sqlSession = MyBatisUtil.getSqlSession();
 		List<LprodVO> lprodPagingList = sqlSession.selectList("lprod.lprodPagingList", pageVo);
+		sqlSession.close();
 		return lprodPagingList;
 	}
 
@@ -30,7 +32,16 @@ public class LprodDaoImpl implements ILprodDao {
 	public int lprodCnt() {
 		SqlSession sqlSession = MyBatisUtil.getSqlSession();
 		int lprodCnt = sqlSession.selectOne("lprod.lprodCnt");
+		sqlSession.close();
 		return lprodCnt;
+	}
+
+	@Override
+	public LprodVO getLprod(String lprod_id) {
+		SqlSession sqlSession = MyBatisUtil.getSqlSession();
+		LprodVO lprodVo = sqlSession.selectOne("lprod.getLprod", lprod_id);
+		sqlSession.close();
+		return lprodVo;
 	}
 
 
