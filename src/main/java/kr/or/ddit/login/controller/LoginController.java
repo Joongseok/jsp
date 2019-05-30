@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import kr.or.ddit.user.model.UserVO;
+import kr.or.ddit.user.service.IuserService;
+import kr.or.ddit.user.service.UserService;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -41,14 +43,23 @@ public class LoginController extends HttpServlet {
 	private static final Logger logger = LoggerFactory
 			.getLogger(LoginController.class);
 	
+	private IuserService userService;
+	
+	@Override
+	public void init() throws ServletException {
+		userService = new UserService();
+	}
+	
 	private static final long serialVersionUID = 1L;
 
 	// 사용자 로그인 화면 요청 처리
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		logger.debug("LoginController doGet()");
 		
-		for(Cookie cookie : request.getCookies()){
-			logger.debug("cookie : {}, {}", cookie.getName(), cookie.getValue());
+		if(request.getCookies() != null){
+			for(Cookie cookie : request.getCookies()){
+				logger.debug("cookie : {}, {}", cookie.getName(), cookie.getValue());
+			}
 		}
 		
 		// login 화면을 처리해줄 누군가에게 위임
@@ -80,12 +91,13 @@ public class LoginController extends HttpServlet {
 		String password = request.getParameter("password");
 		
 		// DB에서 해당 사용자의 정보조회 (service, dao)
+		UserVO userVo = userService.getUser(userId);
 		
 		// 해당 사용자 정보를 이용하여 사용자가 보낸 userId, password가 일치하는지 검사
 		// --> userId : brown이고 password : brown1234라는 값일 때 통과 그 이외의 값은 불일치
 		
 		// 일치하면 (로그인 성공) : main 화면으로 이동
-		if (userId.equals("brown") && password.equals("brown1234")) {
+		if (userVo != null && userVo.getPass().equals(password)) {
 			
 			
 			int cookieMaxAge = 0;
@@ -105,7 +117,7 @@ public class LoginController extends HttpServlet {
 			
 			// session에 사용자 정보를 넣어준다(사용빈도가 높기때문에)
 			HttpSession session = request.getSession();
-			session.setAttribute("USER_INFO", new UserVO("브라운", "borwn", "곰"));
+			session.setAttribute("USER_INFO", userVo);
 			
 			RequestDispatcher rd = request.getRequestDispatcher("/main.jsp");
 			rd.forward(request, response);

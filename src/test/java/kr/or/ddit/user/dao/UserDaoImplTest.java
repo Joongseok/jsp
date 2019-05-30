@@ -90,6 +90,7 @@ public class UserDaoImplTest {
 		/***Then***/
 		assertEquals("브라운", userVo.getName());
 		logger.debug("getUser");
+		logger.debug("password : {}", userVo.getPass());
 	}
 	
 	// 사용자 페이징 리스트 조회
