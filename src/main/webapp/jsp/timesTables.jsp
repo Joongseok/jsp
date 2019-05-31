@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,34 +12,24 @@
 <title>times Tables</title>
 </head>
 <body>
-	<% 
-		String dan = request.getParameter("dan"); 
-		String gop = request.getParameter("gop");
-	%>
+	<c:set var="dan" value="${param.dan}"></c:set>
+	<c:set var="gop" value="${param.gop}"></c:set>
+	
+	<c:if test="${dan == null}">
+		<c:set var="dan" value="9"></c:set>
+	</c:if>
+	<c:if test="${gop == null}">
+		<c:set var="gop" value="9"></c:set>
+	</c:if>
+
 	<table>
-	<%
-		for(int i = 1; i <= Integer.parseInt(dan); i++){ // 첫번째 for문 시작
-	%>
-	<tr>
-	<% 
-			for(int j = 2; j <=Integer.parseInt(gop); j++){ // 두번쨰 for문 시작
-	%>
-			<td> 
-			<%= j %> 
-			* 
-			<%= i %> 
-			=	
-			<%= j * i %>
-			</td>
-	<%
-			} // 첫번째 for문 끝
-	%>
-	</tr>
-	<% 
-		} // 두번째 for문 끝
-	%>
+		<c:forEach var="i" begin="1" end="${dan}" step="1">
+			<tr>
+			<c:forEach var="j" begin="2" end="${gop }" step="1">
+				<td>${j } *${i }=${j*i }</td>
+			</c:forEach>
+			</tr>
+		</c:forEach>
 	</table>
-
-
 </body>
 </html>
