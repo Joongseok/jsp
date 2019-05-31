@@ -6,7 +6,7 @@
 
 
 	<insert id="insertUser" parameterType="userVo">
-		INSERT INTO USERS 
+		INSERT INTO USERS
 		(
 			 USERID
 			,NAME
@@ -70,4 +70,24 @@
 		SELECT COUNT(*)
 		FROM USERS
 	</select>
+	
+	<delete id="deleteUser" parameterType="string">
+		DELETE USERS
+		WHERE USERID = #{userId}
+	</delete>
+	
+	<update id="updateDateUser" parameterType="userVo" >
+		UPDATE USERS
+		SET  NAME	  = #{name}   	
+			,ALIAS    = #{alias}     
+			,PASS     = #{pass}     			
+			,ADDR1    = #{addr1}    			
+			,ADDR2    = #{addr2}    			
+			,ZIPCD    = #{zipcd}    			
+			,BIRTH    = #{birth}    			
+			,PATH     = #{path}     			
+			,FILENAME = #{filename} 	
+		WHERE USERID = #{userId}		
+	</update>            			
+	                    			
 </mapper>

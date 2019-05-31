@@ -4,6 +4,9 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -89,6 +92,73 @@ public class UserServiceImplTest {
 		/***Then***/
 		assertEquals(11, (int)paginationSize);
 
+	}
+	
+	/**
+	* Method : insertUserTest
+	* 작성자 : PC25
+	* 변경이력 :
+	* Method 설명 : 사용자 등록 테스트
+	 * @throws ParseException 
+	*/
+	@Test
+	public void insertUserTest() throws ParseException{
+		/***Given***/
+		String userId   = "a5a5a1215test1125";
+		String name     = "515test151";
+		String alias    = "test";
+		String pass     = "test";
+		String addr1    = "test";
+		String addr2    = "test";
+		String zipcd    = "test";
+		Date birth    = new Date();
+		String path     = "test";
+		String filename = "test";
+
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+		UserVO userVo = new UserVO(userId, name, alias, pass, addr1, addr2, zipcd, sdf.parse("2019-05-31"), path, filename);
+		
+		/***When***/
+		int result = service.insertUser(userVo);
+		/***Then***/
+		assertEquals(1, result);
+		
+		int delResult = service.deleteUser(userId);
+		assertEquals(1, delResult);
+
+	}
+	
+	/**
+	* Method : updateDateUserTest
+	* 작성자 : PC25
+	* 변경이력 :
+	* @throws ParseException
+	* Method 설명 : 사용자 정보 수정
+	*/
+	@Test
+	public void updateDateUserTest() throws ParseException{
+		/***Given***/
+		String userId   = "userTest";
+		String name     = "test";
+		String alias    = "test";
+		String pass     = "test";
+		String addr1    = "test";
+		String addr2    = "test";
+		String zipcd    = "test";
+		Date birth    = new Date();
+		String path     = "test";
+		String filename = "test";
+
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+		UserVO userVo = new UserVO(userId, name, alias, pass, addr1, addr2, zipcd, sdf.parse("2019-05-31"), path, filename);
+		
+		/***When***/
+		int result = service.updateDateUser(userVo);
+		/***Then***/
+		assertEquals(1, result);
+		
 	}
 
 }

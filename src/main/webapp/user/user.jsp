@@ -37,7 +37,7 @@
 					<div class="col-sm-8 blog-main">
 						<h2 class="sub-header">사용자 상세</h2>
 
-						<form class="form-horizontal" role="form">
+						<form class="form-horizontal" action="${pageContext.request.contextPath}/userModify" role="form">
 
 							<div class="form-group">
 								<label for="userNm" class="col-sm-2 control-label">사용자
@@ -96,7 +96,7 @@
 							<div class="form-group">
 								<label for="userNm" class="col-sm-2 control-label">생년월일</label>
 								<div class="col-sm-10">
-									<label class="control-label">${userVo.birth }</label>
+									<label class="control-label">${birthStr}</label>
 								</div>
 							</div>
 

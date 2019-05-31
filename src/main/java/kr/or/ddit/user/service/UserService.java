@@ -73,4 +73,25 @@ public class UserService implements IuserService {
 		return dao.usersCnt();
 	}
 
+	@Override
+	public int insertUser(UserVO userVo) {
+		IUserDao dao = new UserDaoImpl();
+		int result = dao.insertUser(userVo);
+		return result;
+	}
+
+	@Override
+	public int deleteUser(String userId) {
+		IUserDao dao = new UserDaoImpl();
+		int result = dao.deleteUser(userId);
+		return result;
+	}
+
+	@Override
+	public int updateDateUser(UserVO modifyUser) {
+		IUserDao dao = new UserDaoImpl();
+		int result = dao.updateDateUser(modifyUser);
+		return result;
+	}
+
 }

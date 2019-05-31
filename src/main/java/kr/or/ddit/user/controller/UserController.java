@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -48,26 +49,16 @@ public class UserController extends HttpServlet {
 		// 조회 결과를 request객체에 속성으로 저장
 		request.setAttribute("userVo", userVo);
 		
+		HttpSession session = request.getSession();
+		session.setAttribute("userVo", userVo);
+		if (userVo.getBirth() != null) {
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			String birthStr = sdf.format(userVo.getBirth());
+			request.setAttribute("birthStr", birthStr);
+			
+		}
 		// 화면을 담당하는 /user/userList.jsp로 forword
 		request.getRequestDispatcher("/user/user.jsp").forward(request, response);
-	}
-
-	
-	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		
-		String UserId = request.getParameter("userId");
-		String name	 = request.getParameter("name");    
-		String alias = request.getParameter("alias");   
-		String pass	 = request.getParameter("pass");    
-		String addr1 = request.getParameter("addr1");   
-		String addr2 = request.getParameter("addr2");   
-		String zipcd = request.getParameter("zipcd");   
-		String birth = request.getParameter("birth");     
-		String path	 = request.getParameter("path");    
-		String filename;
-		
 	}
 
 }

@@ -66,6 +66,33 @@ public class UserDaoImpl implements IUserDao {
 		sqlSession.close();
 		return usersCnt;
 	}
+
+	@Override
+	public int insertUser(UserVO userVo) {
+		SqlSession sqlSession = MyBatisUtil.getSqlSession();
+		int result = sqlSession.insert("user.insertUser", userVo);
+		sqlSession.commit();
+		sqlSession.close();
+		return result;
+	}
+
+	@Override
+	public int deleteUser(String userId) {
+		SqlSession sqlSession = MyBatisUtil.getSqlSession();
+		int result = sqlSession.delete("user.deleteUser", userId);
+		sqlSession.commit();
+		sqlSession.close();
+		return result;
+	}
+
+	@Override
+	public int updateDateUser(UserVO modifyUser) {
+		SqlSession sqlSession = MyBatisUtil.getSqlSession();
+		int result = sqlSession.update("user.updateDateUser", modifyUser);
+		sqlSession.commit();
+		sqlSession.close();
+		return result;
+	}
 	
 
 	

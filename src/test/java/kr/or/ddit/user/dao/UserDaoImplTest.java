@@ -3,6 +3,9 @@ package kr.or.ddit.user.dao;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import kr.or.ddit.paging.model.PageVO;
@@ -91,6 +94,9 @@ public class UserDaoImplTest {
 		assertEquals("브라운", userVo.getName());
 		logger.debug("getUser");
 		logger.debug("password : {}", userVo.getPass());
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		String birthStr = sdf.format(userVo.getBirth());
+		logger.debug("userBirth : {}", birthStr);
 	}
 	
 	// 사용자 페이징 리스트 조회
@@ -136,6 +142,75 @@ public class UserDaoImplTest {
 		assertEquals(105, usersCnt);
 		logger.debug("usersCnt : {}", usersCnt);
 
+	}
+	
+	/**
+	* Method : insertUserTest
+	* 작성자 : PC25
+	* 변경이력 :
+	* Method 설명 : 사용자 등록 테스트
+	 * @throws ParseException 
+	*/
+	@Test
+	public void insertUserTest() throws ParseException{
+		/***Given***/
+		String userId   = "1251251test214152525";
+		String name     = "test";
+		String alias    = "test";
+		String pass     = "test";
+		String addr1    = "test";
+		String addr2    = "test";
+		String zipcd    = "test";
+		Date birth    = new Date();
+		String path     = "test";
+		String filename = "test";
+
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+		UserVO userVo = new UserVO(userId, name, alias, pass, addr1, addr2, zipcd, sdf.parse("2019-05-31"), path, filename);
+		
+		/***When***/
+		int result = userDao.insertUser(userVo);
+		/***Then***/
+		assertEquals(1, result);
+		
+		int delResult = userDao.deleteUser(userId);
+		assertEquals(1, delResult);
+
+	}
+	
+	/**
+	* Method : updateDateUserTest
+	* 작성자 : PC25
+	* 변경이력 :
+	* @throws ParseException
+	* Method 설명 : 사용자 정보 수정
+	*/
+	@Test
+	public void updateDateUserTest() throws ParseException{
+		/***Given***/
+		String userId   = "userTest";
+		String name     = "test";
+		String alias    = "test";
+		String pass     = "test";
+		String addr1    = "test";
+		String addr2    = "test";
+		String zipcd    = "test";
+		Date birth    = new Date();
+		String path     = "test";
+		String filename = "test";
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		UserVO userVo = new UserVO(userId, name, alias, pass, addr1, addr2, zipcd, sdf.parse("2019-05-31"), path, filename);
+		
+		logger.debug("parse : {}" ,sdf.parse("2019-05-31"));
+		String birthStr = sdf.format(birth);
+		logger.debug("birthStr : {}", birthStr);
+		/***When***/
+		int result = userDao.updateDateUser(userVo);
+		/***Then***/
+		assertEquals(1, result);
+		
 	}
 	
 }
