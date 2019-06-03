@@ -141,7 +141,7 @@ $(document).ready(function (){
 								<label for="birth" class="col-sm-2 control-label">생년월일</label>
 								<div class="col-sm-10">
 									<input type="date" class="form-control" id="birth"
-										name="birth" value="${birthStr}" placeholder="생년월일">
+										name="birth" value="${userVo.birthStr}" placeholder="생년월일">
 								</div>
 							</div>
 							

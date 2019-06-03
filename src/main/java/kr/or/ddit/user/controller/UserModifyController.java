@@ -55,8 +55,6 @@ public class UserModifyController extends HttpServlet {
 		String birth = request.getParameter("birth");     
 		String filename	 = request.getParameter("filename");
 		
-		UserVO userVo= userService.getUser(userId);
-		
 		logger.debug("userId : {}", userId);
 		logger.debug("name : {}", name);
 		logger.debug("alias : {}", alias);
@@ -68,7 +66,6 @@ public class UserModifyController extends HttpServlet {
 		logger.debug("filename	 : {}",filename);
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		logger.debug("sdf : {}", birth = new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
 		UserVO modifyUser = null;
 		
 		try {
@@ -77,14 +74,9 @@ public class UserModifyController extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		if (userVo.getBirth() != null) {
-			String birthStr = sdf.format(userVo.getBirth());
-			request.setAttribute("birthStr", birthStr);
-			
-		}
-		
 		int modifyResult = userService.updateDateUser(modifyUser);
 		if (modifyResult == 1) {
+			logger.debug("수정성공");
 			response.sendRedirect(request.getContextPath() + "/userPagingList");
 		}else{
 			logger.debug("수정실패");
