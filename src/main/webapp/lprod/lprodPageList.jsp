@@ -82,7 +82,7 @@
 						<div class="text-center">
 							<ul class="pagination">
 								<c:choose>
-									<c:when test=" ${pageVo.page == 1 }">
+									<c:when test="${pageVo.page == 1 }">
 										<li class="disabled"><span>«</span></li>
 									</c:when>
 									<c:otherwise>
@@ -104,7 +104,7 @@
 								</c:forEach>	
 								
 								<c:choose>
-									<c:when test=" ${pageVo.page == paginationSize }">
+									<c:when test="${pageVo.page == paginationSize }">
 										<li class="disabled"><span>»</span></li>
 									</c:when>
 									<c:otherwise>
