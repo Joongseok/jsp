@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Collection;
 import java.util.Date;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.ServletException;
@@ -47,7 +48,7 @@ public class FileUploadServlet extends HttpServlet {
 //		}
 
 		// 파일이 존재할 때만 파일을 정해진 위치에 기록한다.
-		if (part.getSize() > 0) {
+		if (part.getSize() > 0 && part != null) {
 			logger.debug("part.getContentType() : {}", part.getContentType());
 			logger.debug("part.getName() : {}", part.getName());
 
@@ -56,41 +57,19 @@ public class FileUploadServlet extends HttpServlet {
 			logger.debug("fileName : {}", fileName);
 			String ext = PartUtil.getExt(fileName);
 			logger.debug("ext : {}", ext);
-			ext = ext.equals("") ?  "" : "." + ext;
-			
-			//년도에 해당하는 폴더가 있는지, 년도안에 월에 해당하는 폴더가 있는지
-			Date dt = new Date();
-//			SimpleDateFormat yyyySdf = new SimpleDateFormat("yyyy");
-//			SimpleDateFormat mmSdf = new SimpleDateFormat("MM");
-
-			SimpleDateFormat yyyyMMSdf = new SimpleDateFormat("yyyyMM");
-			
-			String yyyyMM = yyyyMMSdf.format(dt);
-			
-			String yyyy = yyyyMM.substring(0, 4);
-			String mm = yyyyMM.substring(4, 6);
-			
 			String sp = File.separator;
 			
-			File yyyyFolder = new File("d:"+ sp +"upload"+ sp + yyyy);
-			// 신규년도로 넘어갔을때 해당 년도의 폴더를 생성한다.
-			if(!yyyyFolder.exists()){
-				yyyyFolder.mkdir();
-			}
+			Map<String, Object> resultMap = PartUtil.setMkdir();
+			String uploadPath =  (String) resultMap.get("uploadPath");
+			File uploadFolder = (File) resultMap.get("uploadFolder");
 			
-			//월에 해당하는 폴더가 있는지 확인
-			File mmFolder = new File("d:"+ sp +"upload"+ sp + yyyy + sp + mm);
-			if(!mmFolder.exists()){
-				mmFolder.mkdir();
-			}
-			
-			String uploadPath = "d:"+ sp +"upload"+ sp + yyyy + sp + mm;
-			File uploadFolder = new File(uploadPath);
 			if(uploadFolder.exists()){
 				// 파일 디스크에 쓰기
-				part.write(uploadPath + sp + UUID.randomUUID().toString() + ext);
+				String filePath = uploadPath + sp + UUID.randomUUID().toString() + ext;
+				part.write(filePath);
 				part.delete();
 			}
+			
 		}
 			
 		

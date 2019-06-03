@@ -19,7 +19,10 @@ public class UserVO {
 	
 	public String getBirthStr() {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		return sdf.format(this.birth);
+		if (this.birth != null) {
+			return sdf.format(this.birth);
+		}
+		return null;	
 	}
 
 	public UserVO() {
@@ -120,6 +123,19 @@ public class UserVO {
 		this.birth = birth;
 		this.path = path;
 		this.filename = filename;
+	}
+
+	public UserVO(String userId2, String name2, String alias2, String pass2,
+			String addr12, String addr22, String zipcd2, Date birth2) {
+		super();
+		this.userId = userId2;
+		this.name = name2;
+		this.alias = alias2;
+		this.pass = pass2;
+		this.addr1 = addr12;
+		this.addr2 = addr22;
+		this.zipcd = zipcd2;
+		this.birth = birth2;
 	}
 
 	@Override

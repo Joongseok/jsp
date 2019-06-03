@@ -39,12 +39,23 @@ $(document).ready(function (){
 	});
 	$("#userRegBtn").on("click", function() {
 		console.log("userRegBtn click")
-		if($("#frm :input").val() == ""){
-			alert("정보를 입력해주세요");
+		if($("#userId").val() == ""){
+			alert("아이디를 입력해주세요");
 			return;
-		}else{
-			$("#frm").submit();
 		}
+		if($("#name").val() == ""){
+			alert("이름을 입력해주세요");
+			return;
+		}
+		if($("#alias").val() == ""){
+			alert("별명을 입력해주세요");
+			return;
+		}
+		if($("#pass").val() == ""){
+			alert("비밀번호를 입력해주세요");
+			return;
+		}
+		$("#frm").submit();
 		
 	});
 	
@@ -87,14 +98,17 @@ function dataInit(){
 						<h2 class="sub-header">사용자 등록</h2>
 							
 							
-						<form id="frm" class="form-horizontal" action="${pageContext.request.contextPath}/userForm" method="post" role="form">
+						<form id="frm" class="form-horizontal" action="${pageContext.request.contextPath}/userForm" 
+						method="post" role="form"
+						enctype="multipart/form-data"
+						>
 
 							<div class="form-group">
 								<label for="filename" class="col-sm-2 control-label">사용자
 									사진</label>
 								<div class="col-sm-10">
 									<input type="file" id="file"
-										name="filename" value="${param.filename}" >
+										name="profile" value="${param.filename}" >
 								</div>
 							</div>
 							

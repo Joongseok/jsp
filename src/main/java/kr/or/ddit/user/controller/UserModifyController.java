@@ -1,24 +1,31 @@
 package kr.or.ddit.user.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Map;
+import java.util.UUID;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
 import kr.or.ddit.user.model.UserVO;
 import kr.or.ddit.user.service.IuserService;
 import kr.or.ddit.user.service.UserService;
+import kr.or.ddit.util.PartUtil;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @WebServlet("/userModify")
+@MultipartConfig(maxFileSize=1024*1024*3, maxRequestSize=1024*1024*15)
 public class UserModifyController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -53,7 +60,12 @@ public class UserModifyController extends HttpServlet {
 		String addr2 = request.getParameter("addr2");   
 		String zipcd = request.getParameter("zipcd");   
 		String birth = request.getParameter("birth");     
-		String filename	 = request.getParameter("filename");
+		String filename	 = request.getParameter("modifyFile");
+		
+		UserVO usertmp = userService.getUser(userId);
+		
+		String tmpPath = usertmp.getPath() == null ? "" : usertmp.getPath();
+		String tmpFileName = usertmp.getFilename() == null ? "" : usertmp.getFilename();
 		
 		logger.debug("userId : {}", userId);
 		logger.debug("name : {}", name);
@@ -67,13 +79,36 @@ public class UserModifyController extends HttpServlet {
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		UserVO modifyUser = null;
-		
-		try {
-			modifyUser = new UserVO(userId, name, alias, pass, addr1, addr2, zipcd, sdf.parse(birth), "", "");
-		} catch (ParseException e) {
-			e.printStackTrace();
+		if (birth.equals("")) {
+			modifyUser = new UserVO(userId, name, alias, pass, addr1, addr2, zipcd, null, tmpPath, tmpFileName);
+		}else{
+			try {
+				modifyUser = new UserVO(userId, name, alias, pass, addr1, addr2, zipcd, sdf.parse(birth), tmpPath, tmpFileName);
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+			
 		}
-		
+		Part profile = request.getPart("modifyFile");
+		if (profile.getSize() > 0 && profile != null) {
+			String contentDisposition = profile.getHeader("content-disposition");
+			String fileName = PartUtil.getFileName(contentDisposition);
+			String ext = PartUtil.getExt(fileName);
+			String sp = File.separator;
+			
+			Map<String, Object> resultMap = PartUtil.setMkdir();
+			File uploadFolder = (File) resultMap.get("uploadFolder");
+			String uploadPath =  (String) resultMap.get("uploadPath");
+			
+			if(uploadFolder.exists()){
+				// 파일 디스크에 쓰기
+				String filePath = uploadPath + sp + UUID.randomUUID().toString() + ext;
+				modifyUser.setPath(filePath);
+				modifyUser.setFilename(fileName);
+				profile.write(filePath);
+				profile.delete();
+			}
+		}
 		int modifyResult = userService.updateDateUser(modifyUser);
 		if (modifyResult == 1) {
 			logger.debug("수정성공");

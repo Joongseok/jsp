@@ -7,18 +7,6 @@
 
 	<insert id="insertUser" parameterType="userVo">
 		INSERT INTO USERS
-		(
-			 USERID
-			,NAME
-			,ALIAS
-			,PASS
-			,ADDR1
-			,ADDR2
-			,ZIPCD
-			,BIRTH
-			,PATH
-			,FILENAME
-		)
 		VALUES
 		(
 			 #{userId}
@@ -28,9 +16,9 @@
 			,#{addr1}
 			,#{addr2}
 			,#{zipcd}
-			,#{birth}
-			,#{path}
-			,#{filename}
+			,#{birth, jdbcType=DATE}
+			,#{path, jdbcType=VARCHAR}
+			,#{filename, jdbcType=VARCHAR}
 		)
 	</insert>
 
@@ -84,7 +72,7 @@
 			,ADDR1    = #{addr1}    			
 			,ADDR2    = #{addr2}    			
 			,ZIPCD    = #{zipcd}    			
-			,BIRTH    = #{birth}    			
+			,BIRTH    = #{birth, jdbcType=DATE}    			
 			,PATH     = #{path}     			
 			,FILENAME = #{filename} 	
 		WHERE USERID = #{userId}		
