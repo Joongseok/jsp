@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import kr.or.ddit.encrypt.kisa.sha256.KISA_SHA256;
 import kr.or.ddit.user.model.UserVO;
 import kr.or.ddit.user.service.IuserService;
 import kr.or.ddit.user.service.UserService;
@@ -89,7 +90,7 @@ public class LoginController extends HttpServlet {
 		// 사용자 파라미터 userId, password
 		String userId = request.getParameter("userId");
 		String password = request.getParameter("password");
-		
+		String encryptPassword = KISA_SHA256.encrypt(password);
 		// DB에서 해당 사용자의 정보조회 (service, dao)
 		UserVO userVo = userService.getUser(userId);
 		
@@ -97,7 +98,7 @@ public class LoginController extends HttpServlet {
 		// --> userId : brown이고 password : brown1234라는 값일 때 통과 그 이외의 값은 불일치
 		
 		// 일치하면 (로그인 성공) : main 화면으로 이동
-		if (userVo != null && userVo.getPass().equals(password)) {
+		if (userVo != null && userVo.getPass().equals(encryptPassword)) {
 			
 			
 			int cookieMaxAge = 0;
