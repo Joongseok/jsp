@@ -73,5 +73,14 @@ public interface IuserService {
 	* Method 설명 : 사용자 수정
 	*/
 	int updateDateUser(UserVO modifyUser);
-
+	
+	/**
+	* Method : encryptPassAllUser
+	* 작성자 : PC25
+	* 변경이력 :
+	* @return
+	* Method 설명 : 사용자 비밀번호 암호화 일괄적용 배치
+	*/
+	int encryptPassAllUser();
+	
 }

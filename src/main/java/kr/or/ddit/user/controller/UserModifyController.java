@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
+import kr.or.ddit.encrypt.kisa.sha256.KISA_SHA256;
 import kr.or.ddit.user.model.UserVO;
 import kr.or.ddit.user.service.IuserService;
 import kr.or.ddit.user.service.UserService;
@@ -55,12 +56,15 @@ public class UserModifyController extends HttpServlet {
 		String userId = ((UserVO) request.getSession().getAttribute("userVo")).getUserId();
 		String name	 = request.getParameter("name");    
 		String alias = request.getParameter("alias");   
-		String pass	 = request.getParameter("pass");    
 		String addr1 = request.getParameter("addr1");   
 		String addr2 = request.getParameter("addr2");   
 		String zipcd = request.getParameter("zipcd");   
 		String birth = request.getParameter("birth");     
 		String filename	 = request.getParameter("modifyFile");
+		
+		// 사용자가 보낸 평문 비밀번호 데이터
+		String pass	 = request.getParameter("pass");    
+		pass = KISA_SHA256.encrypt(pass);
 		
 		UserVO usertmp = userService.getUser(userId);
 		

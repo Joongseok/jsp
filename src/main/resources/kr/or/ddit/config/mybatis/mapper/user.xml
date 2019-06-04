@@ -22,6 +22,7 @@
 		)
 	</insert>
 
+	
 
 	<!-- 전체 사용자 리스트 조회 -->
 	<select id="userList" resultType="userVo">
@@ -76,6 +77,18 @@
 			,PATH     = #{path}     			
 			,FILENAME = #{filename} 	
 		WHERE USERID = #{userId}		
-	</update>            			
+	</update> 
+	
+	<!-- 사용자 비밀번호 암호화 적용 대상 조회 -->
+	<select id="userListForPassEncrypt" resultType="userVo">
+		SELECT *
+		FROM   USERS
+		WHERE  USERID NOT IN('userTest', 'at', 'brown')
+	</select>           			
+	<update id="updateUserEncryptPass" parameterType="userVo">
+		UPDATE USERS
+		SET    PASS   = #{pass}
+		WHERE  USERID = #{userId}
+	</update>
 	                    			
 </mapper>
