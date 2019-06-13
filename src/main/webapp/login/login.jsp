@@ -102,7 +102,7 @@
 
 		<form id="frm" class="form-signin"
 			  method="post" action="${pageContext.request.contextPath }/login">
-			<h2 class="form-signin-heading">Login</h2>
+			<h2 class="form-signin-heading">Login ${requestMap}</h2>
 			<label for="userId" class="sr-only">userId</label> 
 			<input type="text" name="userId" id="userId" class="form-control" placeholder="userId" required value="${param.userId}">
 			 <label	for="password" class="sr-only">password</label> 
