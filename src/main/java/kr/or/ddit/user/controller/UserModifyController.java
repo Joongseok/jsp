@@ -91,7 +91,6 @@ public class UserModifyController extends HttpServlet {
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}
-			
 		}
 		Part profile = request.getPart("modifyFile");
 		if (profile.getSize() > 0 && profile != null) {
