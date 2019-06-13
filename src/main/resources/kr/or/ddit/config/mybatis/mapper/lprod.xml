@@ -32,4 +32,10 @@
 		FROM LPROD
 		WHERE LPROD_ID = #{lprod_id}
 	</select>
+	
+	<select id="getProdName" parameterType="String" resultType="prodVo">
+		SELECT PROD_NAME, PROD_ID
+		FROM   PROD
+		WHERE  PROD_LGU=#{prod_lgu}
+	</select>
 </mapper>

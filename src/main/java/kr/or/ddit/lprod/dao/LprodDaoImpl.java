@@ -7,6 +7,7 @@ import org.apache.ibatis.jdbc.SQL;
 import org.apache.ibatis.session.SqlSession;
 
 import kr.or.ddit.lprod.model.LprodVO;
+import kr.or.ddit.lprod.model.ProdVO;
 import kr.or.ddit.mybatis.MyBatisUtil;
 import kr.or.ddit.paging.model.PageVO;
 
@@ -42,6 +43,20 @@ public class LprodDaoImpl implements ILprodDao {
 		LprodVO lprodVo = sqlSession.selectOne("lprod.getLprod", lprod_id);
 		sqlSession.close();
 		return lprodVo;
+	}
+
+	/**
+	* Method : getProdNameTest
+	* 작성자 : PC25
+	* 변경이력 :
+	* Method 설명 : prod_lgu에 해당하는 prodName과 prodId를 조회하는 메서드
+	*/
+	@Override
+	public List<ProdVO> getProdName(String prod_lgu) {
+		SqlSession sqlSession = MyBatisUtil.getSqlSession();
+		List<ProdVO> prodNames = sqlSession.selectList("lprod.getProdName", prod_lgu);
+		sqlSession.close();
+		return prodNames;
 	}
 
 
