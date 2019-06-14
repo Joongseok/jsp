@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Map;
 import java.util.UUID;
 
@@ -49,8 +48,6 @@ public class UserModifyController extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
-		
 		logger.debug("usreModifyController doPost()");
 		
 		String userId = ((UserVO) request.getSession().getAttribute("userVo")).getUserId();

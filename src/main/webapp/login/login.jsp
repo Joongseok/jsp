@@ -11,11 +11,11 @@
 
 <title>Login</title>
 
-<link href="${pageContext.request.contextPath}/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="${cp}/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-<link href="${pageContext.request.contextPath}/css/signin.css" rel="stylesheet">
+<link href="${cp}/css/signin.css" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="${pageContext.request.contextPath}/js/js.cookie.js"></script>
+<script src="${cp}/js/js.cookie.js"></script>
 
 	<script>
 	
@@ -101,8 +101,8 @@
 	<div class="container">
 
 		<form id="frm" class="form-signin"
-			  method="post" action="${pageContext.request.contextPath }/login">
-			<h2 class="form-signin-heading">Login ${requestMap}</h2>
+			  method="post" action="${cp }/login">
+			<h2 class="form-signin-heading">Login${cp }</h2>
 			<label for="userId" class="sr-only">userId</label> 
 			<input type="text" name="userId" id="userId" class="form-control" placeholder="userId" required value="${param.userId}">
 			 <label	for="password" class="sr-only">password</label> 

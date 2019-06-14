@@ -54,7 +54,7 @@
 					<div class="col-sm-8 blog-main">
 						<h2 class="sub-header">lprod</h2>
 						
-						<form id="frm" action="${pageContext.request.contextPath}/lprod" method="get">
+						<form id="frm" action="${cp}/lprod" method="get">
 							<input type="hidden" id="lprodid" name="lprod_id">
 						</form>
 						
@@ -86,7 +86,7 @@
 										<li class="disabled"><span>«</span></li>
 									</c:when>
 									<c:otherwise>
-										<li><a href="${pageContext.request.contextPath}/lprodPagingList?page=${pageVo.page - 1 }&pageSize=${pageVo.pageSize}">«</a></li>
+										<li><a href="${cp}/lprodPagingList?page=${pageVo.page - 1 }&pageSize=${pageVo.pageSize}">«</a></li>
 									</c:otherwise>
 								</c:choose>
 								
@@ -97,7 +97,7 @@
 											<li class="active" ><span>${i }</span> </li>
 										</c:when>
 										<c:when test="${pageVo.page != i}">
-											<a href="${pageContext.request.contextPath}/lprodPagingList?page=${i}&pageSize=${pageVo.pageSize}">${i}</a>
+											<a href="${cp}/lprodPagingList?page=${i}&pageSize=${pageVo.pageSize}">${i}</a>
 										</c:when>
 									</c:choose>
 									</li>
@@ -108,7 +108,7 @@
 										<li class="disabled"><span>»</span></li>
 									</c:when>
 									<c:otherwise>
-										<li><a href="${pageContext.request.contextPath}/lprodPagingList?page=${pageVo.page + 1 }&pageSize=${pageVo.pageSize}">»</a></li>
+										<li><a href="${cp}/lprodPagingList?page=${pageVo.page + 1 }&pageSize=${pageVo.pageSize}">»</a></li>
 									</c:otherwise>
 								</c:choose>
 							</ul>

@@ -86,7 +86,7 @@ $(document).ready(function (){
 						<h2 class="sub-header">사용자 수정</h2>
 							
 							
-						<form id="frm" class="form-horizontal" action="${pageContext.request.contextPath}/userModify" method="post" role="form"
+						<form id="frm" class="form-horizontal" action="${cp}/userModify" method="post" role="form"
 						enctype="multipart/form-data">
 
 							<div class="form-group">

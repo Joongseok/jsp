@@ -56,6 +56,7 @@ public class LoginController extends HttpServlet {
 	// 사용자 로그인 화면 요청 처리
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		logger.debug("LoginController doGet()");
+		logger.debug("parameter UNT_CD : {}", request.getParameter("UNT_CD"));
 		
 		if(request.getCookies() != null){
 			for(Cookie cookie : request.getCookies()){
@@ -83,6 +84,7 @@ public class LoginController extends HttpServlet {
 
 	// 로그인 요청을 처리
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		logger.debug("parameter UNT_CD : {}", request.getParameter("UNT_CD"));
 		logger.debug("parameter rememberme : {}", request.getParameter("rememberme"));
 		logger.debug("parameter userId : {}", request.getParameter("userId"));
 		logger.debug("parameter password : {}", request.getParameter("password"));
@@ -99,7 +101,6 @@ public class LoginController extends HttpServlet {
 		
 		// 일치하면 (로그인 성공) : main 화면으로 이동
 		if (userVo != null && userVo.getPass().equals(encryptPassword)) {
-			
 			
 			int cookieMaxAge = 0;
 			// remember 파라미터가 존재할 경우 userId, rememberme cookie 설정해준다

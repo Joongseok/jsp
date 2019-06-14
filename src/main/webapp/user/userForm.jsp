@@ -98,7 +98,7 @@ function dataInit(){
 						<h2 class="sub-header">사용자 등록</h2>
 							
 							
-						<form id="frm" class="form-horizontal" action="${pageContext.request.contextPath}/userForm" 
+						<form id="frm" class="form-horizontal" action="${cp}/userForm" 
 						method="post" role="form"
 						enctype="multipart/form-data"
 						>

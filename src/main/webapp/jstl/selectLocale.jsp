@@ -20,7 +20,7 @@
 </head>
 <body>
 <h2>select locale</h2>
-<form id="fmt" action="${pageContext.request.contextPath}/selectLocale" method="post">
+<form id="fmt" action="${cp}/selectLocale" method="post">
 	<select id="select">
 		<option value="ko">한국어</option>
 		<option value="en">english</option>

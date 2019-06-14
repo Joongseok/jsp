@@ -18,12 +18,12 @@
 	request.getRemoteAddr() : <%=request.getRemoteAddr() %><br>
 	request.getLocalAddr() : <%=request.getLocalAddr() %><br>
 	request.getContentType() : <%=request.getContentType() %><br>
-	request.getContextPath() : ${pageContext.request.contextPath}<br>
+	request.getContextPath() : ${cp}<br>
 	request.getMethod() : <%=request.getMethod() %><br>
 	request.getRequestURI() : <%=request.getRequestURI() %><br>
 	request.getProtocol() : <%=request.getProtocol() %><br>
 	
-	<img src="${pageContext.request.contextPath}/img/sally.png"><br>
+	<img src="${cp}/img/sally.png"><br>
 
 	request.getParameter("rangersName") : <%= request.getParameter("rangersName") %><br>
 	
