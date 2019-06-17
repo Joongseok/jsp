@@ -21,6 +21,9 @@
 ## main.kr.or.ddit.calculator pakage
 ### 1. serlvet의 요청처리 과정에 대한 이해를 돕기 위한 예제
 ------------------------------
+## main.kr.or.ddit.login.controller pakage
+### 1. main화면으로 가기전에 로그인 처리하는 서블릿 구현
+------------------------------
 ## main.kr.or.ddit.encrypt pakage
 ### 1. KISA_SHA 암호화 알고리즘 
 ------------------------------
@@ -47,6 +50,3 @@
 ## main.kr.or.ddit.listener pakage
 ### 1. listener lifeCycle
 ### 2. listener를 이용하여 서버가 로드될 때 임의의 값을 셋팅 하는 예제
-------------------------------
-## main.kr.or.ddit.login.controller pakage
-### 1. main화면으로 가기전에 로그인 처리하는 서블릿 구현
