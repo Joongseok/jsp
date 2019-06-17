@@ -1,6 +1,18 @@
-# 2019.05.20 - 3019.06.17
+# 2019.05.20 - 2019.06.17
 
 # JSP/SERVLET 학습
+## 학습 내용
+### 1. jsp/servlet lifeCycle, filter lifeCycle, listener lifeCycle
+### 2. pom.xml, web.xml 환경설정
+### 3. jsp 표현식, el, jstl
+### 4. Model2, mybatis, Junit
+
+#### 참고 사이트 
+##### 1. gitignore.io
+##### 2. mvnrepository.com
+##### 3. jquery.com
+##### 4. bootstrapk.com
+------------------------------
 ## main.kr.or.ddit.servlet pakage
 ### 1. socpe이해 학습
 ### 2. url패턴의 이해
