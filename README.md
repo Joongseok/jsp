@@ -2,10 +2,11 @@
 
 # JSP/SERVLET 학습
 ## 학습 내용
-### 1. jsp/servlet lifeCycle, filter lifeCycle, listener lifeCycle
-### 2. pom.xml, web.xml 환경설정
-### 3. jsp 표현식, el, jstl
-### 4. Model2, mybatis, Junit
+### 1. jsp/servlet lifeCycle
+### 2. scope
+### 3. pom.xml, web.xml 환경설정
+### 4. jsp 표현식, el, jstl
+### 5. Model2, mybatis, Junit
 
 ## 참고 사이트 
 ### 1. gitignore.io
