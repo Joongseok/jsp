@@ -7,11 +7,11 @@
 ### 3. jsp 표현식, el, jstl
 ### 4. Model2, mybatis, Junit
 
-#### 참고 사이트 
-##### 1. gitignore.io
-##### 2. mvnrepository.com
-##### 3. jquery.com
-##### 4. bootstrapk.com
+## 참고 사이트 
+### 1. gitignore.io
+### 2. mvnrepository.com
+### 3. jquery.com
+### 4. bootstrapk.com
 ------------------------------
 ## main.kr.or.ddit.servlet pakage
 ### 1. socpe이해 학습
