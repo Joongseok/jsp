@@ -27,7 +27,7 @@ public class LoginCheckFilter implements Filter {
 		String uri = req.getRequestURI();
 		uri = uri.substring(contextPath.length());
 		
-		if (uri.startsWith("/login") || uri.startsWith("/js") || uri.startsWith("/css")|| uri.startsWith("/img")) {
+		if (uri.startsWith("/login") || uri.startsWith("/js") || uri.startsWith("/css")|| uri.startsWith("/img") || uri.startsWith("/bootstrap") ) {
 			chain.doFilter(request, response);
 		}else if(req.getSession().getAttribute("USER_INFO") != null){
 			chain.doFilter(request, response);
