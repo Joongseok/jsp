@@ -73,13 +73,13 @@ public class LoginController extends HttpServlet {
 		UserVO user = (UserVO)session.getAttribute("USER_INFO");
 		
 		logger.debug("user : {}", user);
-		if (user == null) {
+		if (user == null) 
 			// session에 사용자 정보가 없을 경우 --> 기존 로직
 			request.getRequestDispatcher("/login/login.jsp").forward(request, response);
-		}else{
+		else
 			// session에 사용자 정보가 있을경우 --> main화면으로 이동
 			request.getRequestDispatcher("/main.jsp").forward(request, response);
-		}
+		
 	}
 
 	// 로그인 요청을 처리
